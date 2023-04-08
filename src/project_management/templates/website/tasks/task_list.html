@@ -1,0 +1,59 @@
+{% extends '../base.html'%} {% load crispy_forms_tags %} {% block content %}
+
+<h1 class="my-4 mx-6 is-size-1">TASKS</h1>
+
+{% for task in tasks  %}
+<div class="columns is-centered my-6">
+  <div class="column is-9">
+    <div class="card">
+      <footer class="card-footer">
+        <a href="{% url 'task_create' slug=project.slug %}" class="card-footer-item">CREATE TASK</a>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<div class="columns is-centered my-6">
+  <div class="column is-9">
+    <div class="table-container is-centered">
+      <table class="table mx-auto">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>TITLE</th>
+            <th>DESCRIPTION</th>
+            <th>DATE START</th>
+            <th>FINISHED</th>
+            <th>ASSIGNED TO</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for task in tasks  %}
+        
+          <tr>
+            <td>{{ task.pk }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.date_start }}</td>
+            <td>{{ task.is_finished }}</td>
+            <td>{{ task.assigned_to }}</td>
+            <td>
+            <a href="{% url 'task_update' slug=project.slug pk=task.pk  %}" class="button is-link">E</a>
+            <a href="{% url 'task_delete' slug=project.slug pk=task.pk  %}" class="button is-danger" >D</a>
+            </td>
+          </tr>
+
+        {% endfor %}
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+  {% endblock %}
+</div>

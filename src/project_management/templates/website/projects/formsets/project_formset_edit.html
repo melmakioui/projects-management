@@ -1,0 +1,21 @@
+{% extends '../../base.html'%} {% load crispy_forms_tags %} {% block content %}
+
+
+<div class="columns is-centered my-6">
+  <div class="column is-6">
+<form method="post">
+  {{ form|crispy }}
+
+  {% for formset in inlines %}
+    {{ formset }}
+  {% endfor %}
+      <input class="button is-info my-3" type="submit" value="Create" />
+
+</form>
+  </div>
+</div>
+
+
+
+  {% endblock %}
+</div>

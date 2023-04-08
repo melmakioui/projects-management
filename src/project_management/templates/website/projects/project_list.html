@@ -1,0 +1,55 @@
+{% extends '../base.html'%} {% load crispy_forms_tags %} {% block content %}
+
+<h1 class="my-4 mx-6 is-size-1">PROJECTS</h1>
+
+<div class="columns is-centered my-1">
+  <div class="column is-9">
+    <div class="card">
+      <footer class="card-footer">
+        <a href="{% url 'project_create' %}" class="card-footer-item">CREATE PROJECT</a>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<div class="columns is-centered my-1">
+  <div class="column is-9">
+    <div class="card">
+      <footer class="card-footer">
+        <a href="{% url 'project_form_set' %}" class="card-footer-item">CREATE PROJECT WITH TASKS</a>
+      </footer>
+    </div>
+  </div>
+</div>
+
+
+{% for project in projects  %}
+<div class="columns is-centered my-6">
+  <div class="column is-one-quarter">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">{{ project.name }}</p>
+        <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          {{ project.description }}
+          <br />
+          <i>{{ project.date_created }}</i>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <a href="{% url 'project_detail' slug=project.slug%}" class="card-footer-item">View</a>
+        <a href="{% url 'project_update' slug=project.slug %}" class="card-footer-item">Edit</a>
+        <a href="{% url 'project_delete' slug=project.slug %}" class="card-footer-item">Delete</a>
+      </footer>
+    </div>
+    </div>
+{% endfor %}
+
+  {% endblock %}
+</div>

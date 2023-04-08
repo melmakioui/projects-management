@@ -1,0 +1,17 @@
+{% extends '../base.html'%} {% load crispy_forms_tags %} {% block content %}
+
+
+
+<div class="columns is-centered my-6">
+  <div class="column is-11">
+    <form method="post">{% csrf_token %} 
+    <h4 class="is-size-5">Are you sure you want to delete "{{ project.name }}"?</h4>
+    <input class=" button is-danger my-3 " type="submit" value="Delete" />
+    </form>
+  </div>
+</div>
+
+
+
+  {% endblock %}
+</div>
